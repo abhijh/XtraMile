@@ -1,0 +1,23 @@
+{
+  "name": "XtraMile",
+  "authors": [
+    "Abhinav Jha <abhinav_jha@outlook.com>"
+  ],
+  "description": "XtraMile 2k16",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~1.0.7",
+    "angular-route": "~1.5.5"
+  }
+}
