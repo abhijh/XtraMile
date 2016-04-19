@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<html lang="en" >
+   <head>
+    	<title>Control Panel</title>
+      <link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.min.css">
+
+      <script src="/static/bower_components/angular/angular.min.js"></script>
+      <script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+      <script src="/static/bower_components/angular-aria/angular-aria.min.js"></script>
+      <script src="/static/bower_components/angular-messages/angular-messages.min.js"></script>
+      <script src="/static/bower_components/angular-material/angular-material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <style>
+     .box {         
+      
+      padding:10px;
+      text-align:center;
+      
+     }
+     
+    </style>
+      <script language="javascript">
+        var app = angular
+            .module('firstApplication', ['ngMaterial', 'ngMessages']);
+        app.controller('inputController', inputController);
+        app.controller('cardController', cardController);
+        function inputController ($scope) {
+           $scope.project = {
+              comments: 'Comments',    
+           };
+        }          
+        function cardController ($scope) {            
+        }  
+
+      </script>      
+   </head>
+   <body ng-app="firstApplication"  flex-xs="50" layout layout-align="center center">  
+      <md-card  class="box">
+        
+         <md-card-header>
+           
+            <md-card-header-text>
+               <span class="md-title">LOGIN</span>
+               <div id="inputContainer" class="inputDemo" ng-controller="inputController as ctrl" ng-cloak>
+         <md-content layout-padding>
+            <form name="projectForm" action="verify/"method="POST">
+				{% csrf_token %}
+               <md-input-container class="md-block">
+                  <label>User Name</label>
+                  <input required name="username" ng-model="project.username">
+                  <div ng-messages="projectForm.username.$error">
+                     <div ng-message="required">This is required.</div>
+                  </div>
+               </md-input-container>
+               <md-input-container class="md-block">
+                  <label>Password</label>
+                  <input required type="password" name="password" ng-model="project.password">
+
+                  <div ng-messages="projectForm.password.$error">
+                     <div ng-message="required">This is required.</div>
+                  </div>
+               </md-input-container>
+                 <md-button class="md-raised md-primary" type="submit">Login</md-button>
+			</form>
+      </md-card>
+   </body>
+</html>

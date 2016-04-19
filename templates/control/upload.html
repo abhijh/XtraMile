@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<html lang="en" >
+	<head>
+	<title>Control Panel | Welcome {{request.user}}</title>
+		<link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.min.css">
+
+		<script src="/static/bower_components/angular/angular.min.js"></script>
+		<script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script src="/static/bower_components/angular-aria/angular-aria.min.js"></script>
+		<script src="/static/bower_components/angular-messages/angular-messages.min.js"></script>
+		<script src="/static/bower_components/angular-material/angular-material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<style>
+			.box {         
+				padding:10px;
+				text-align:center;
+			}
+		</style>
+		<script language="javascript">
+			var app = angular
+			    .module('firstApplication', ['ngMaterial', 'ngMessages']);
+			app.controller('inputController', inputController);
+			app.controller('cardController', cardController);
+			function inputController ($scope) {
+			   $scope.project = {
+			      comments: 'Comments',    
+			   };
+			}          
+			function cardController ($scope) {            
+			}  
+		</script>      
+	</head>
+	<body ng-app="firstApplication"  flex-xs="50" >  
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	        {{ message }}
+	    {% endfor %}
+	</ul>
+	{% endif %}
+	    <form action="/control/writeToDB/" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" required name="data_sheet" ng-model="project.data_sheet">
+	        <md-button class="md-raised md-primary" type="submit">Upload data sheet</md-button>
+		</form>
+	<md-button class="md-raised md-primary" href="/control/logout/">Logout</md-button>
+	</body>
+</html>
